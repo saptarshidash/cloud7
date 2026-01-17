@@ -1,0 +1,155 @@
+import { useState } from 'react';
+import { motion } from 'framer-motion';
+import { signup } from '../api/client';
+
+import logo from '../assets/cloud7-logo-material.svg';
+import illustration from '../assets/login-illustration-drive.svg';
+
+export default function Signup({ onSwitch }) {
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(null);
+  const [loading, setLoading] = useState(false);
+
+  async function submit() {
+    try {
+      setLoading(true);
+      setError(null);
+      setSuccess(null);
+
+      await signup({
+        firstName,
+        lastName,
+        email,
+        password
+      });
+
+      setSuccess('Account created successfully. Please sign in.');
+
+      setTimeout(() => {
+        onSwitch();
+      }, 1200);
+
+    } catch (err) {
+      setError(err.message || 'Failed to create account! Please try again. ');
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  return (
+      <div className="min-h-screen bg-[#f8f9fa] flex items-center justify-center px-6">
+        <div className="w-full max-w-5xl bg-white rounded-2xl shadow-xl grid grid-cols-1 md:grid-cols-2 overflow-hidden border border-gray-200">
+
+          {/* LEFT — Branding */}
+          <div className="hidden md:flex flex-col justify-center px-10 bg-[#f1f3f4]">
+            <img src={logo} className="w-32 mb-6" />
+
+            <h2 className="text-2xl font-semibold text-gray-800 mb-3">
+              Create your Cloud7 workspace
+            </h2>
+
+            <p className="text-gray-600 leading-relaxed mb-8">
+              Get started with your personal cloud drive —
+              beautifully simple, fast, and secure.
+            </p>
+
+            <img
+                src={illustration}
+                alt="Cloud storage illustration"
+                className="w-full max-w-sm"
+            />
+          </div>
+
+          {/* RIGHT — Signup */}
+          <div className="flex flex-col justify-center px-8 py-10">
+            <div className="max-w-sm mx-auto w-full">
+
+              <h1 className="text-2xl font-semibold text-gray-900 mb-1">
+                Create your account
+              </h1>
+
+              <p className="text-sm text-gray-600 mb-6">
+                Use your Cloud7 account
+              </p>
+
+              {error && (
+                  <p className="text-sm text-red-600 mb-3">{error}</p>
+              )}
+
+              {success && (
+                  <p className="text-sm text-green-600 mb-3">{success}</p>
+              )}
+
+              {/* First + Last Name */}
+              <div className="grid grid-cols-2 gap-3 mb-3">
+                <input
+                    placeholder="First name"
+                    value={firstName}
+                    onChange={e => setFirstName(e.target.value)}
+                    className="p-3 border border-gray-300 rounded-lg text-gray-900 focus:ring-2 focus:ring-blue-500"
+                />
+                <input
+                    placeholder="Last name"
+                    value={lastName}
+                    onChange={e => setLastName(e.target.value)}
+                    className="p-3 border border-gray-300 rounded-lg text-gray-900 focus:ring-2 focus:ring-blue-500"
+                />
+              </div>
+
+              <input
+                  placeholder="Email"
+                  value={email}
+                  onChange={e => setEmail(e.target.value)}
+                  className="w-full mb-3 p-3 border border-gray-300 rounded-lg text-gray-900 focus:ring-2 focus:ring-blue-500"
+              />
+
+              <input
+                  type="password"
+                  placeholder="Password"
+                  value={password}
+                  onChange={e => setPassword(e.target.value)}
+                  className="w-full mb-5 p-3 border border-gray-300 rounded-lg text-gray-900 focus:ring-2 focus:ring-blue-500"
+              />
+
+              <button
+                  onClick={submit}
+                  disabled={loading}
+                  className="w-full bg-[#1a73e8] text-white py-3 rounded-lg font-medium hover:bg-blue-600 disabled:opacity-60"
+              >
+                {loading ? 'Creating account…' : 'Create account'}
+              </button>
+
+              <div className="mt-6 text-sm text-center text-gray-600">
+                Already have an account?{' '}
+                <button
+                    onClick={onSwitch}
+                    className="text-blue-600 hover:underline"
+                >
+                  Sign in
+                </button>
+              </div>
+
+              {/* Vibe coded by 7R */}
+              <motion.div
+                  initial={{ opacity: 0, y: 6 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.4 }}
+                  className="mt-10 text-right"
+              >
+              <span className="text-[11px] text-gray-400 italic tracking-wide">
+                vibe coded by <span className="text-[#1a73e8] font-medium">7R</span>
+              </span>
+              </motion.div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+  );
+}

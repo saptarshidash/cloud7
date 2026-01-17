@@ -1,0 +1,25 @@
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/cloud7
+    username: cloud7
+    password: cloud7
+  jpa:
+    hibernate:
+      ddl-auto: update
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 500MB
+      max-request-size: 500MB
+
+storage:
+  type: local   # local | s3
+  local:
+    root-dir: ./uploads
+
+
+server:
+  port: 7777
+  tomcat:
+    max-swallow-size: -1
