@@ -5,17 +5,10 @@ export default defineConfig({
     plugins: [react()],
     server: {
         proxy: {
-            '/files': {
+            '/api': {
                 target: 'http://localhost:7777',
-                changeOrigin: true
-            },
-            '/auth': {
-                target: 'http://localhost:7777',
-                changeOrigin: true
-            },
-            '/folders': {
-                target: 'http://localhost:7777',
-                changeOrigin: true
+                changeOrigin: true,
+                secure: false
             }
         }
     }

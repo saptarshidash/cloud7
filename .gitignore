@@ -49,7 +49,6 @@ temp/
 # Uploads / local storage
 ############################
 uploads/
-storage/
 files/
 
 ############################

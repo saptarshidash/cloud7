@@ -1,4 +1,4 @@
-export const API = 'http://localhost:7777';
+export const API = '/api';
 
 export async function signup(payload) {
   const res = await fetch(`${API}/auth/signup`, {
