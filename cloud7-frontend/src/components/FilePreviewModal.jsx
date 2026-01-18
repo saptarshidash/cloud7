@@ -1,8 +1,10 @@
+import {API} from "../api/client.js";
+
 export default function FilePreviewModal({ file, onClose }) {
     const isPdf = file.name.toLowerCase().endsWith('.pdf');
     const isImage = /\.(png|jpg|jpeg|gif|webp)$/i.test(file.name);
 
-    const previewUrl = `/files/${file.id}/preview`;
+    const previewUrl = `${API}/files/${file.id}/preview`;
 
     return (
         <div
