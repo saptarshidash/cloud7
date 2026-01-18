@@ -22,7 +22,7 @@ export default function StorageBar({ used, total }) {
         fixed
         bottom-6
         left-6
-        w-[240px]
+        w-[240px] max-w-[calc(100vw-2rem)]
         bg-white
         border border-gray-200
         rounded-xl

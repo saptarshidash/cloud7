@@ -8,6 +8,7 @@ import { BRANDING } from '../config/branding';
 
 import logo from '../assets/cloud7-logo-material.svg';
 import illustration from '../assets/login-illustration-drive.svg';
+import illustration2 from '../assets/login-illustration-drive2.svg';
 
 export default function Login({ onLogin, onSwitch }) {
   const [email, setEmail] = useState('');
@@ -37,26 +38,33 @@ export default function Login({ onLogin, onSwitch }) {
   }
 
   return (
-      <div className="min-h-screen bg-[#f8f9fa] flex items-center justify-center px-6">
+      <div className="min-h-screen bg-[#f8f9fa] flex items-start md:items-center justify-center px-6 py-6">
         <div className="w-full max-w-5xl bg-white rounded-2xl shadow-xl grid grid-cols-1 md:grid-cols-2 overflow-hidden border border-gray-200">
 
-          {/* LEFT — Branding */}
-          <div className="hidden md:flex flex-col justify-center px-10 bg-[#f1f3f4]">
-            <img src={logo} className="w-32 mb-6" />
+        {/* LEFT — Branding */}
+          <div className="flex md:flex flex-col justify-center px-10 pt-6 bg-white">
+            <motion.div
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 3, ease: 'easeOut' }}
+            >
+          <img src={logo} className="w-32 mb-6" />
 
             <h2 className="text-2xl font-semibold text-gray-800 mb-3">
               {BRANDING.app.tagline}
             </h2>
 
-            <p className="text-gray-600 leading-relaxed mb-8">
-              {BRANDING.app.description}
+            <p className="text-gray-600 leading-relaxed mb-4 md:mb-8">
+            {BRANDING.app.description}
             </p>
 
+
             <img
-                src={illustration}
+                src={illustration2}
                 alt="Cloud storage illustration"
                 className="w-full max-w-sm"
             />
+            </motion.div>
           </div>
 
           {/* RIGHT — Login */}

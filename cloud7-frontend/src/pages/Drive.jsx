@@ -296,13 +296,13 @@ export default function Drive({ user }) {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.25 }}
-                    className="grid grid-cols-[repeat(auto-fill,minmax(160px,1fr))] gap-6"
+                    className="grid grid-cols-2 sm:grid-cols-[repeat(auto-fit,minmax(160px,160px))] gap-4"
                 >
                     {/* FOLDERS */}
                     {folders.map(folder => (
                         <div
                             key={`folder-${folder.id}`}
-                            className="relative group w-[160px] h-[140px] bg-gray-50 border border-gray-300 rounded-xl p-3 shadow hover:shadow-lg"
+                            className="relative group h-[140px] bg-gray-50 border border-gray-300 rounded-xl p-3 shadow hover:shadow-lg"
                         >
                             <div
                                 onClick={() => handleFolderClick(folder)}
@@ -344,7 +344,7 @@ export default function Drive({ user }) {
                     {files.map(file => (
                         <div
                             key={`file-${file.id}`}
-                            className="relative group w-[160px] h-[140px] bg-gray-50 border border-gray-300 rounded-xl p-3 shadow hover:shadow-lg"
+                            className="relative group h-[140px] bg-gray-50 border border-gray-300 rounded-xl p-3 shadow hover:shadow-lg"
                         >
                             <div
                                 onClick={() => setPreviewFile(file)}

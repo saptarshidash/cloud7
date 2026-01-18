@@ -37,11 +37,11 @@ export default function Trash({ user }) {
     }, [userId, loadTrash]);
 
     if (loading) {
-        return <p className="p-8 text-gray-500">Loading Trash...</p>;
+        return <p className="p-8 text-gray-500"></p>;
     }
 
     return (
-        <div className="min-h-screen p-8 bg-[#f8f9fa] text-gray-800">
+        <div className="min-h-screen p-8 bg-white text-gray-800">
 
 
             {items.length === 0 ? (

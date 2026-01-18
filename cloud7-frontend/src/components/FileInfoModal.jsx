@@ -9,7 +9,7 @@ export default function FileInfoModal({ info, onClose }) {
             <motion.div
                 initial={{ scale: 0.95, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
-                className="bg-white w-[420px] rounded-2xl shadow-xl p-6"
+                className="bg-white w-[420px] max-w-[calc(100vw-2rem)] rounded-2xl shadow-xl p-6"
             >
                 <h2 className="text-lg font-semibold mb-4 text-gray-900">
                     File details

@@ -6,7 +6,7 @@ export default function DeleteConfirmModal({
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30 backdrop-blur-sm">
             <div className="
-        w-[380px]
+        w-[380px] max-w-[calc(100vw-3rem)]
         bg-white
         rounded-2xl
         shadow-xl
