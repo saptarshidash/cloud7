@@ -13,22 +13,22 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
         http
-                .csrf(csrf -> csrf.disable())
+                .csrf(csrf -> {})
+
                 .headers(headers -> headers
-                        .frameOptions(frame -> frame.disable()) // MUST disable
+                        .frameOptions(frame -> frame.disable())
                         .contentSecurityPolicy(csp -> csp
                                 .policyDirectives(
-                                        "frame-ancestors 'self' http://localhost:5173"
+                                        "frame-ancestors 'self'"
                                 )
                         )
                 )
-                .cors(cors -> {})
+
                 .formLogin(form -> form.disable())
                 .httpBasic(basic -> basic.disable())
+
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-                        .requestMatchers("/auth/**").permitAll()
-                        .anyRequest().permitAll() // TEMP: until JWT filter added
+                        .anyRequest().permitAll()
                 );
 
         return http.build();
